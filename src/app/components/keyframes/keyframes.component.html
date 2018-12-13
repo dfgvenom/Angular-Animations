@@ -1,0 +1,13 @@
+<div class="keyFramesGrid">
+  <div class="keyframe" [@keyFrame]="keyFrameStatus">
+    <button (click)="toggleKeyFrameStatus()">KeyFrame</button>
+  </div>
+
+  <div class="keyframeWithOffset" [@keyFrameWithOffset]="keyFrameStatus">
+  </div>
+
+  <div class="pulse" [@pulsating]="isOpen ? 'open' : 'close'">
+    <button (click)="togglePulse()">Pulse</button>
+  </div>
+
+</div>

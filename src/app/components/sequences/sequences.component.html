@@ -1,0 +1,21 @@
+<div class="sequencesGrid">
+
+  <div class="firstQuery">
+    <ul @pageAnimations>
+      <li class="item" *ngFor="let item of elements">item</li>
+    </ul>
+  </div>
+
+  <div class="fly">
+    <button (click)="toggleFly()">fly {{flyShown ? 'out' : 'in'}}</button>
+      <p @flyInOut class="flyText" *ngIf="flyShown">BlaBlub</p>
+  </div>
+
+  <div class="sequence">
+    <button (click)="startAnimation()">startSequence</button>
+      <p [@sequenceTrigger]="sequenceRunning ? 'on' : 'off'"
+          class="flyText"
+          (@sequenceTrigger.done)="stopAnimation()">BlaBlub</p>
+  </div>
+
+</div>

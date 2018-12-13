@@ -1,0 +1,19 @@
+<div class="simpleGrid">
+  <div class="open-close-container" [@openClose]="isOpen ? 'open' : 'closed'" (click)="toggle()">
+    <p>The box is now {{ isOpen ? 'open' : 'closed' }}!</p>
+  </div>
+
+  <div class="fly">
+    <button (click)="toggleFly()">flyInOut</button>
+    <p [@flyInOut]="isShownFly ? 'in' : 'out'" *ngIf="isShownFly">
+      Fly{{isShownFly ? 'In' : 'Out'}}
+    </p>
+  </div>
+
+  <div class="fade">
+    <button (click)="toggleFade()">fadeInOut</button>
+    <p [@fadeInOut]="isShownFade ? 'in' : 'out'" *ngIf="isShownFade">
+      Fade
+    </p>
+  </div>
+</div>

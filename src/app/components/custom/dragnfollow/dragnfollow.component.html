@@ -1,0 +1,14 @@
+<h1>Drag 'n Follow</h1>
+<div #container class="container" 
+      (mousedown)="onMouseButtonDown($event)" 
+      (mousemove)="onMouseMove($event)" 
+      (mouseup)="onMouseButtonUp($event)">
+  <div #follower 
+      [@followAnimation]="getAnimationState()"
+      class="follower"
+      (@followAnimation.done)="onAnimationEnd($event)"
+      (mousedown)="onMouseButtonDown($event)" 
+      (mouseup)="onMouseButtonUp($event)">
+      {{getMovementSize()}}
+  </div>
+</div>

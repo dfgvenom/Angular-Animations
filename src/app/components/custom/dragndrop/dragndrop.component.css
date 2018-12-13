@@ -1,0 +1,12 @@
+.container {
+    height: 320px;
+    width: 320px;
+    background-color: LightGray;
+  }
+  .draggable {
+    height: 50px;
+    width: 100px;
+    background-color: Green;
+    position: absolute;
+    cursor: move;
+  }

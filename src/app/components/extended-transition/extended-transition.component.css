@@ -1,0 +1,62 @@
+.extendedGrid {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 140px 140px 140px;
+    grid-template-areas: 
+        "increment disable"
+        "throbber ."
+        "shrinkContainer shrinkContainer";
+}
+
+.increment {
+    grid-area: increment;
+}
+
+.disable {
+    grid-area: disable;
+}
+
+.animationCallbacks {
+    grid-area: throbber;
+}
+
+.keyframe {
+    grid-area: keyframe;
+}
+
+.keyframeWithOffset {
+    grid-area: keyframeWithOffset;
+}
+
+.shrinkContainer {
+    grid-area: shrinkContainer;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 25px 1fr;
+    grid-template-areas: 
+        "button button button"
+        "small medium big";
+}
+
+.shrinkButton {
+    grid-area: button;
+}
+
+.shrinkSmall {
+    grid-area: small;
+    height: 30%;
+    background-color: yellow;
+}
+
+.shrinkMedium {
+    grid-area: medium;
+    height: 60%;
+    background-color: brown;
+}
+
+.shrinkBig {
+    grid-area: big;
+    height: 100%;
+    background-color: cyan;
+}

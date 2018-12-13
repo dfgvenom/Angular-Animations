@@ -1,0 +1,11 @@
+.container {
+    height: 320px;
+    width: 320px;
+    background-color: LightGray;
+  }
+  .follower {
+    height: 10px;
+    width: 10px;
+    background-color: violet;
+    position: absolute;
+  }

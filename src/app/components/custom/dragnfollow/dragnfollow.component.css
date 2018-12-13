@@ -1,0 +1,10 @@
+.container {
+    height: 320px;
+    width: 320px;
+    background-color: LightGray;
+  }
+  .follower {
+    width: 5px;
+    height: 5px;
+    position: relative;
+  }

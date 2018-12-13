@@ -1,0 +1,23 @@
+.simpleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "openClose fly fade";
+}
+
+.open-close-container {
+  grid-area: openClose;
+  border: 1px solid #000000;
+  padding: 20px 20px 0px 20px;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.fly {
+  grid-area: fly;
+}
+
+.fade {
+  grid-area: fade;
+}
