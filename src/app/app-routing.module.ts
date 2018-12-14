@@ -7,11 +7,11 @@ import { SequencesComponent } from './components/sequences/sequences.component';
 import { CustomComponent } from './components/custom/custom.component';
 
 export const routes: Routes = [
-  { path: 'simpleTransition', component: SimpleTransitionComponent },
-  { path: 'extendedTransition', component: ExtendedTransitionComponent },
-  { path: 'keyFrames', component: KeyframesComponent },
-  { path: 'sequences', component: SequencesComponent },
-  { path: 'custom', component: CustomComponent },
+  { path: 'simpleTransition', component: SimpleTransitionComponent, data: {animation: 'simpleTransition'} },
+  { path: 'extendedTransition', component: ExtendedTransitionComponent, data: {animation: 'extendedTransition'} },
+  { path: 'keyFrames', component: KeyframesComponent, data: {animation: 'keyFrames'} },
+  { path: 'sequences', component: SequencesComponent, data: {animation: 'sequences'} },
+  { path: 'custom', component: CustomComponent, data: {animation: 'custom'} },
 ];
 
 @NgModule({

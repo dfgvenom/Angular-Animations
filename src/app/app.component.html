@@ -13,8 +13,8 @@
     </ul>
   </nav>
   
-  <div class="selectedComponent">
-    <router-outlet></router-outlet>
+  <div class="selectedComponent" [@routeAnimations]="prepRouteAnimation(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>
   
