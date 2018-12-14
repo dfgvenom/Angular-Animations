@@ -5,6 +5,7 @@ import { ExtendedTransitionComponent } from './components/extended-transition/ex
 import { KeyframesComponent } from './components/keyframes/keyframes.component';
 import { SequencesComponent } from './components/sequences/sequences.component';
 import { CustomComponent } from './components/custom/custom.component';
+import { AnimationBuilderComponent } from './components/animation-builder/animation-builder.component';
 
 export const routes: Routes = [
   { path: 'simpleTransition', component: SimpleTransitionComponent, data: {animation: 'simpleTransition'} },
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: 'keyFrames', component: KeyframesComponent, data: {animation: 'keyFrames'} },
   { path: 'sequences', component: SequencesComponent, data: {animation: 'sequences'} },
   { path: 'custom', component: CustomComponent, data: {animation: 'custom'} },
+  { path: 'animationBuilder', component: AnimationBuilderComponent, data: {animation: 'animationBuilder'} },
 ];
 
 @NgModule({

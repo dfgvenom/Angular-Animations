@@ -13,6 +13,7 @@ import { DragndropComponent } from './components/custom/dragndrop/dragndrop.comp
 import { DragnfollowComponent } from './components/custom/dragnfollow/dragnfollow.component';
 import { ClicknfollowComponent } from './components/custom/clicknfollow/clicknfollow.component';
 import { CanvasComponent } from './components/custom/canvas/canvas.component';
+import { AnimationBuilderComponent } from './components/animation-builder/animation-builder.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CanvasComponent } from './components/custom/canvas/canvas.component';
     DragndropComponent,
     DragnfollowComponent,
     ClicknfollowComponent,
-    CanvasComponent
+    CanvasComponent,
+    AnimationBuilderComponent,
   ],
   imports: [
     BrowserModule,
