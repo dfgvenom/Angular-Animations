@@ -1,7 +1,7 @@
-import { query, transition, trigger, style, animate, group, animateChild } from '@angular/animations';
+import { animate, group, query, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { routes } from './app-routing.module';
 import { RouterOutlet } from '@angular/router';
+import { routes } from './app-routing.module';
 
 @Component({
   selector: 'app-root',

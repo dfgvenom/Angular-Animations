@@ -1,0 +1,9 @@
+.canvas {
+    border: 1px solid black;
+}
+
+.follower {
+    width: 5px;
+    height: 5px;
+    position: relative;
+  }

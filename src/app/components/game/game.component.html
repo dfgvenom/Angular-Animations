@@ -1,0 +1,22 @@
+<div class="gameContainer"
+        (mousedown)="onMouseButtonDown($event)" 
+        (mousemove)="onMouseMove($event)" 
+        (mouseup)="onMouseButtonUp($event)">
+
+    <div>
+      <button mat-button class="clearBtn" (click)="clearCanvas()">Clear</button>
+      <button class="clearAtStartBtn" (click)="toggleClearAtStart()">Clear at start</button>
+      
+      <mat-slide-toggle [(ngModel)]="clearAtStart">Clear at start</mat-slide-toggle>
+    </div>
+
+    <div #follower 
+      [@followAnimation]="getAnimationState()"
+      class="follower"
+      (@followAnimation.done)="onAnimationEnd($event)"
+      (mousedown)="onMouseButtonDown($event)" 
+      (mouseup)="onMouseButtonUp($event)">
+      {{getMovementSize()}}
+    </div>
+    <canvas class="canvas" #canvas></canvas>  
+</div>
