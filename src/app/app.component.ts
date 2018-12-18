@@ -25,7 +25,7 @@ import { routes } from './app-routing.module';
             animate('1s',
               style({ opacity: 0, transform: 'translateX(-100%)' }))
           ], { optional: true }),
-          query('@*', animateChild())
+          query('@*', animateChild(), {optional: true})
         ]),
       ]),
     ])

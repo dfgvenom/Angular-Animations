@@ -22,7 +22,7 @@ let lastMovY = -1;
         left: '0px',
       })),
       state('off', style({
-        backgroundColor: 'blue',
+        backgroundColor: 'rgb(115, 115, 115)',
         top: '{{movY}}px',
         left: '{{movX}}px',
         transform: 'none',
@@ -30,20 +30,20 @@ let lastMovY = -1;
         { params: { movX: curMovX, movY: curMovY } }
       ),
       state('record', style({
-        backgroundColor: 'red',
+        backgroundColor: 'rgb(196, 42, 42)',
         top: '{{movY}}px',
         left: '{{movX}}px',
       }),
         { params: { movX: curMovX, movY: curMovY } }
       ),
       state('on', style({
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(207, 207, 207)',
         transform: 'translateX({{movX}}px) translateY({{movY}}px)'
       }),
         { params: { movX: curMovX, movY: curMovY } }
       ),
       state('on2', style({
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(207, 207, 207)',
       })),
       transition('void => *', []),
       transition('* => initial', [
@@ -68,21 +68,19 @@ export class GameComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
   @ViewChild('follower') private followerElement: ElementRef;
   private cx: CanvasRenderingContext2D;
-  private canvasEl;
   private rect;
 
   movements: any[] = [];
-  follower: any;
   isMouseDown = false;
 
   animationState = 'initial';
-  public clearAtStart = false;
+  clearAtStart = false;
+  drawConnections = false;
 
   constructor(private renderer: Renderer2) {
   }
 
   public ngAfterViewInit() {
-    this.follower = this.followerElement.nativeElement;
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
 
@@ -94,8 +92,7 @@ export class GameComponent implements AfterViewInit {
     this.captureEvents(canvasEl);
     this.rect = this.getBoundary();
 
-    this.renderer.setStyle(this.follower, 'top', this.rect.top + 'px');
-    this.renderer.setStyle(this.follower, 'left', this.rect.left + 'px');
+    this.clearCanvas();
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
@@ -151,14 +148,14 @@ export class GameComponent implements AfterViewInit {
   }
 
   private setCanvasStyle(isMouseDrawing: boolean) {
-    let lineWidth;
-    let strokeStyle;
+    let lineWidth: number;
+    let strokeStyle: string;
     if (isMouseDrawing) {
       lineWidth = 1;
-      strokeStyle = 'blue';
+      strokeStyle = 'rgb(196, 42, 42)';
     } else {
       lineWidth = 3;
-      strokeStyle = 'black';
+      strokeStyle = 'rgb(207, 207, 207)';
     }
     this.cx.lineWidth = lineWidth;
     this.cx.strokeStyle = strokeStyle;
@@ -186,7 +183,9 @@ export class GameComponent implements AfterViewInit {
       this.animationState = 'record';
     } else if (this.animationState === 'on'
       || this.animationState === 'on2') {
-      // this.movements.push(['off']);
+      if (!this.drawConnections) {
+        this.movements.push(['off']);
+      }
     }
   }
 
@@ -197,13 +196,26 @@ export class GameComponent implements AfterViewInit {
 
   onAnimationEnd(event: AnimationEvent) {
     if (event.toState === 'on') {
-      if (this.getMovementSize() > 0) {
+      if (this.isDrawingCycle()) {
         this.handleAnimationCycle(event);
       } else {
         this.returnToOff();
       }
     }
   }
+
+  private isDrawingCycle() {
+    if (this.getMovementSize() > 0) {
+      const movement = this.movements.find(s => true);
+      if (movement.length === 1) {
+        this.movements.shift();
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private handleAnimationCycle(event: AnimationEvent) {
     this.handleCanvasDrawingInAnimation(event);
     this.updateCurrentMovement();
@@ -235,21 +247,15 @@ export class GameComponent implements AfterViewInit {
     }, 10);
   }
 
-  // if (currentMovement instanceof String) {
-  //   lastMovX = -1;
-  //   lastMovY = -1;
-  //   this.animationState = 'off';
-  //   if (this.getMovementSize() > 0) {
-  //     setTimeout(() => {
-  //       this.animationState = 'on';
-  //     }, 10);
-  //   }
-  // } else {
-
   private returnToOff() {
     lastMovX = -1;
     lastMovY = -1;
     this.animationState = 'off';
+    if (this.movements.length > 0) {
+      setTimeout(() => {
+        this.animationState = 'on';
+      }, 10);
+    }
   }
 
   onMouseMove(event: MouseEvent): void {
