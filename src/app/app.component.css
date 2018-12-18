@@ -1,13 +1,17 @@
 .gridContainer {
+    height: 100%;
     display: grid;
+    grid-template-rows: 80px 1fr;
     grid-template-columns: auto 1fr;
     grid-template-areas:
         "headerImage header"
         "navigation selectedComponent";
+    color: rgb(207, 207, 207);
 }
 
 .header {
     grid-area: header;
+    align-self: center;
 }
 
 .headerImage {
@@ -25,4 +29,15 @@
 
 .selectedComponent {
     grid-area: selectedComponent;
+    overflow: auto;
+}
+
+.navLink_active {
+    color: rgb(196, 42, 42) !important;
+}
+.navLink:visited, .navLink:link {
+    color: rgb(207, 207, 207);
+}
+.navLink:hover {
+    color: rgb(115, 115, 115);
 }
