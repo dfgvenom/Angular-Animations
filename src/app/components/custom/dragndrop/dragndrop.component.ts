@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Renderer2, Host } from '@angular/core';
 
 const draggableHeight = 50;
 const draggableWidth = 100;
@@ -15,6 +15,7 @@ export class DragndropComponent implements OnInit {
 
   boundary: any = {};
   draggable: any;
+  container: any;
   isMouseDown = false;
 
   constructor(private renderer: Renderer2) {
@@ -22,24 +23,30 @@ export class DragndropComponent implements OnInit {
 
   ngOnInit() {
     this.draggable = this.draggableElement.nativeElement;
+    this.container = this.containerElement.nativeElement;
 
-    const container = this.containerElement.nativeElement;
     this.boundary = {
-      left: container.offsetLeft + (draggableWidth / 2),
-      right: container.clientWidth + container.offsetLeft - (draggableWidth / 2),
-      top: container.offsetTop + (draggableHeight / 2),
-      bottom: container.clientWidth + container.offsetTop - (draggableHeight / 2),
+      left: this.container.offsetLeft + (draggableWidth / 2),
+      right: this.container.clientWidth + this.container.offsetLeft - (draggableWidth / 2),
+      top: this.container.offsetTop + (draggableHeight / 2),
+      bottom: this.container.clientWidth + this.container.offsetTop - (draggableHeight / 2),
     };
   }
 
   onMouseButton(event: MouseEvent): void {
     this.isMouseDown = event.buttons === 1;
+
+    if (this.isMouseDown) {
+      console.warn('this.container.scrolltop: ' + this.container.scrolltop);
+      console.warn('event.clientY: ' + event.clientY);
+      console.warn('this.boundary.top: ' + this.boundary.top);
+    }
   }
 
   onMouseMove(event: MouseEvent): void {
     if (this.isMouseDown && this.isInsideBoundary(event)) {
-      this.renderer.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
-      this.renderer.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
+      this.renderer.setStyle(this.draggable, 'left', event.clientX - this.boundary.left + 'px');
+      this.renderer.setStyle(this.draggable, 'top', event.clientY - this.boundary.top + 'px');
     }
   }
 
